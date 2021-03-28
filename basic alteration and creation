@@ -1,0 +1,51 @@
+(to create table)
+
+create table customers
+(
+customer_id int,
+first_name varchar(255),
+last_name varchar(255),
+email_address varchar(255),
+number_of_complaints int,
+primary key (customer_id),
+unique key (email_address)
+);
+
+
+drop table customers;
+
+(UNIQUE KEY)
+alter table customers
+add unique key (email_address);
+
+(to drop unique key)
+alter table customers
+drop index email_address;
+
+(gender)
+
+alter table customers
+add column gender enum('M','F') after last_name;
+
+(values)
+insert into customers(first_name, last_name, gender, email_address, number_of_complaints)
+values('john', 'mackinley', 'M', 'john.mckinley@365carrers.com', 0);
+
+(editing default constraints)
+alter table customers
+change column number_of_complaints number_of_complaints int default 0;
+
+alter table customers
+alter column number_of_complaints drop default;
+
+(default constraint exercise solution)
+
+create table companies
+(
+company_id varchar(255),
+company_name varchar(255) default 'X',
+headquaters_phone_number varchar(255),
+primary key(company_id),
+unique key(headquaters_phone_number)
+);
+
