@@ -1,0 +1,51 @@
+(Is not null)
+
+SELECT 
+    dept_name
+FROM
+    departments
+WHERE
+    dept_no IS NOT NULL;
+    
+    
+
+-- (other comparision operators)
+
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    hire_date >= '2000-01-01' and gender = 'f';
+    
+    SELECT 
+    *
+FROM
+    salaries
+WHERE
+    salary > 150000;
+
+(select distinct function)
+
+SELECT DISTINCT
+    gender
+FROM
+    employees;
+    
+    
+SELECT DISTINCT
+    hire_date
+FROM
+    employees;
+    
+-- Introduction to aggregate function
+
+SELECT 
+    COUNT(emp_no)
+FROM
+    employees;
+    
+SELECT 
+    COUNT(DISTINCT first_name)
+FROM
+    employees;
