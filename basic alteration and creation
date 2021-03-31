@@ -104,5 +104,176 @@ SELECT
 FROM
     departments
 
+(using where clause)
+
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name = 'kellie' AND gender = 'F'
+    
+select* from employees where first_name = 'kellie' or first_name = 'Aruna';
+
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    gender = 'F'
+        AND (first_name = 'Kellie' OR first_name = 'Aruna');
+        
+
+(in and not in instatement)
+
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name = 'cathie'
+        OR first_name = 'mark'
+        OR first_name = 'nathan';
+
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name IN ('cathie' , 'mark', 'nathan');
+ 
+ (not in)
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name NOT IN ('cathie' , 'mark', 'nathan');
+    
+
+ -- (like and not like clauses)
+ 
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name LIKE ('ar%');
+    
+
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name LIKE ('%ar');
+    
+    
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name LIKE ('%ar%');
+    
+    
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name LIKE ('mar_');
+    
+    
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name NOT LIKE ('%mar%');
+    
+    
+-- (exercises on like and not like)
+
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name LIKE ('mark%');
+    
+    SELECT 
+    *
+FROM
+    employees
+WHERE
+    hire_date LIKE ('%2000%');
+    
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    emp_no LIKE ('1000_');
+    
+    
+-- (exercises on wildcard character) 
+
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name LIKE ('%jack%');
+    
 
 
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    first_name NOT LIKE ('%jack%');
+    
+    
+-- (between .. and operators)
+
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    hire_date BETWEEN '1990-01-01' AND '2000-01-01';
+    
+    -- (not between .. and)
+
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    hire_date NOT BETWEEN '1990-01-01' AND '2000-01-01';
+    
+ (exercises)
+ 
+SELECT 
+    *
+FROM
+    salaries
+WHERE
+    salary BETWEEN '66000' AND '70000';
+    
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    emp_no BETWEEN '10004' AND '10012';
+    
+
+SELECT 
+    dept_name
+FROM
+    departments
+WHERE
+    dept_no BETWEEN 'd003' AND 'd006';
