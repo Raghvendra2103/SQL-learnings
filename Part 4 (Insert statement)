@@ -1,0 +1,23 @@
+SELECT 
+    *
+FROM
+    employees
+ORDER BY emp_no DESC
+LIMIT 10;
+
+Insert employees 
+( emp_no,
+birth_date,
+first_name,
+last_name,
+gender,
+hire_date
+) values 
+(
+999901,
+'1992-03-21',
+'Raghv',
+'soni',
+'m',
+'2011-06-07'
+);
