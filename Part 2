@@ -49,3 +49,58 @@ SELECT
     COUNT(DISTINCT first_name)
 FROM
     employees;
+    
+    
+--(aggregate functions exercises)
+
+SELECT 
+    COUNT(*)
+FROM
+    salaries
+WHERE
+    salary >= 100000;
+    
+    SELECT 
+    COUNT(*)
+FROM
+    dept_manager;
+
+
+-- Order by clause (ASC = ascending, DESC = descending)
+
+SELECT 
+    *
+FROM
+    employees
+ORDER BY first_name ASC;
+
+
+SELECT 
+    *
+FROM
+    employees
+ORDER BY first_name DESC;
+
+
+SELECT 
+    *
+FROM
+    employees
+ORDER BY emp_no DESC;
+
+SELECT 
+    *
+FROM
+    employees
+ORDER BY first_name , last_name ASC;
+
+
+(Some other exercises)
+
+SELECT 
+    *
+FROM
+    employees
+ORDER BY hire_date DESC;
+
+
