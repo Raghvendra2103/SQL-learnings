@@ -21,3 +21,163 @@ hire_date
 'm',
 '2011-06-07'
 );
+
+
+insert into employees 
+(
+emp_no,
+birth_date,
+first_name,
+last_name,
+gender,
+hire_date
+) values
+(
+ 999902,
+'1996-02-21',
+'Regina',
+'Rich',
+'F',
+'2016-03-25'
+);
+
+SELECT 
+    *
+FROM
+    titles
+LIMIT 10;
+
+insert into titles
+(
+emp_no,
+title,
+from_date
+)
+values
+(
+999903,
+'Senior Engineer',
+'1997-10-01'
+);
+
+SELECT 
+    *
+FROM
+    titles
+ORDER BY emp_no DESC;
+
+-- 
+
+insert into employees 
+(
+emp_no,
+birth_date,
+first_name,
+last_name,
+gender,
+hire_date
+) values
+(
+ 999903,
+'1997-09-14',
+'jhonathan',
+'creek',
+'M',
+'9999-01-01'
+);
+
+-- 
+
+SELECT 
+    *
+FROM
+    dept_emp
+ORDER BY emp_no DESC
+LIMIT 10;
+
+-- 
+
+insert into dept_emp 
+(emp_no,
+dept_no,
+from_date,
+to_date
+)
+values
+(999903,
+'d005',
+'1997-10-01',
+'9999-01-01'
+);
+
+-- (Inserting data into new table)
+
+SELECT 
+    *
+FROM
+    departments
+LIMIT 10;
+
+
+create table department_dup
+( dept_no char(4) not null,
+dept_name varchar(40) not null
+);
+
+SELECT 
+    *
+FROM
+    department_dup;
+
+insert into department_dup 
+(
+dept_no, 
+dept_name
+)
+select * from departments
+
+
+SELECT 
+    *
+FROM
+    department_dup
+ORDER BY dept_no;
+
+--
+insert into departments values ('d010', 'Business Analysis');
+
+select * from departments limit 10;
+--
+
+
+-- (Update Statement)
+
+UPDATE employees 
+SET 
+    first_name = 'stella',
+    last_name = 'parkinson',
+    birth_date = '1990-12-01',
+    gender = 'F'
+WHERE
+    emp_no = 999901;
+    
+    select * from employees where emp_no= 999901
+    
+    
+example;- 
+
+UPDATE departments 
+SET 
+    dept_name = 'Data Analysis'
+WHERE
+    dept_no = 'd010';
+    
+    
+    SELECT 
+    *
+FROM
+    departments
+WHERE
+    dept_no = 'd010';
+    
+    
