@@ -1,0 +1,82 @@
+-- exercises 1 on joins
+
+alter table departments_dup drop column dept_manager;
+
+select* from departments_dup;
+
+ALTER TABLE departments_dup 
+CHANGE COLUMN dept_no dept_no CHAR(4) NULL;
+
+
+ALTER TABLE departments_dup
+CHANGE COLUMN dept_name dept_name VARCHAR(40) NULL;
+
+
+
+CREATE TABLE departments_dup (
+    dept_no CHAR(4) NULL,
+    dept_name VARCHAR(40) NULL
+)
+
+
+insert into departments_dup 
+(
+dept_no, 
+dept_name
+) 
+select * from departments;
+
+SELECT 
+    *
+FROM
+    departments_dup
+ORDER BY dept_no DESC;
+
+
+DELETE FROM departments_dup 
+WHERE
+    dept_no = 'd002';
+    
+    
+insert into departments_dup (dept_name)
+values ('public_relations');
+
+insert into departments_dup(dept_no) values('d010'),('d011');
+
+--exercise 2 on joins
+
+
+drop table if exists dept_manager_dup;
+
+CREATE TABLE dept_manager_dup (
+    emp_no INT(11) NOT NULL,
+    dept_no CHAR(4) NULL,
+    from_date DATE NOT NULL,
+    to_date DATE NULL
+);
+
+
+insert into dept_manager_dup 
+select * from dept_manager;
+
+
+insert into dept_manager_dup(emp_no, from_date)
+values (999904, '2017-01-01'),
+(999905, '2017-01-01'),
+(999906, '2017-01-01'),
+(999907, '2017-01-01');
+
+
+select * from dept_manager_dup;
+
+
+DELETE FROM dept_manager_dup 
+WHERE
+    dept_no = 'd001';
+    
+
+insert into departments_dup(dept_name)
+values ('Public Relations');
+
+
+select* from departments_dup;
