@@ -27,6 +27,7 @@ WHERE
             
 -- subqueries with in exists and not exists
 
+
 SELECT 
     e.first_name, e.last_name
 FROM
@@ -64,3 +65,152 @@ WHERE
     title = 'assistant engineer';
     
     
+    -- (subqueries nested in select and from)
+    
+    Question;- -- assign employee number 110022 asa manager to all employees 
+from 10001 to 100020, and employee number 110039 as a manager 
+to all employees from 10021 to 10040.
+    
+    
+SELECT 
+    A.*
+FROM
+    (SELECT 
+        e.emp_no AS employee_ID,
+            MIN(de.dept_no) AS department_code,
+            (SELECT 
+                    emp_no
+                FROM
+                    dept_manager
+                WHERE
+                    emp_no = 110022) AS manager_ID
+    FROM
+        employees e
+    JOIN dept_emp de ON e.emp_no = de.emp_no
+    WHERE
+        e.emp_no <= 10020
+    GROUP BY e.emp_no
+    ORDER BY e.emp_no) AS A 
+UNION SELECT 
+    B.*
+FROM
+    (SELECT 
+        e.emp_no AS employee_ID,
+            MIN(de.dept_no) AS department_code,
+            (SELECT 
+                    emp_no
+                FROM
+                    dept_manager
+                WHERE
+                    emp_no = 110039) AS manager_ID
+    FROM
+        employees e
+    JOIN dept_emp de ON e.emp_no = de.emp_no
+    WHERE
+        e.emp_no > 10020
+    GROUP BY e.emp_no
+    ORDER BY e.emp_no
+    LIMIT 20) AS B
+; 
+
+
+-- (SQL Subqueries nested in SELECT and FROM - exercise)
+
+A and B should be the same subsets used in the last lecture (SQL Subqueries Nested in SELECT and FROM). 
+In other words, assign employee number 110022 as a manager to all employees from 10001 to 10020 (this must be subset A),
+and employee number 110039 as a manager to all employees from 10021 to 10040 (this must be subset B).
+Use the structure of subset A to create subset C, where you must assign employee number 110039 as a manager to employee 110022.
+Following the same logic, create subset D. Here you must do the opposite - assign employee 110022 as a manager to employee 110039.
+drop table if exists emp_manager.
+
+
+
+CREATE TABLE emp_manager (
+    emp_no INT(11) NOT NULL,
+    dept_no CHAR(4) NULL,
+    manager_no INT(11) NOT NULL
+); 
+
+
+SELECT 
+    U.*
+FROM
+    (SELECT 
+        A.*
+    FROM
+        (SELECT 
+        e.emp_no AS employee_ID,
+            MIN(de.dept_no) AS department_code,
+            (SELECT 
+                    emp_no
+                FROM
+                    dept_manager
+                WHERE
+                    emp_no = 110022) AS manager_ID
+    FROM
+        employees e
+    JOIN dept_emp de ON e.emp_no = de.emp_no
+    WHERE
+        e.emp_no <= 10020
+    GROUP BY e.emp_no
+    ORDER BY e.emp_no) AS A UNION SELECT 
+        B.*
+    FROM
+        (SELECT 
+        e.emp_no AS employee_ID,
+            MIN(de.dept_no) AS department_code,
+            (SELECT 
+                    emp_no
+                FROM
+                    dept_manager
+                WHERE
+                    emp_no = 110039) AS manager_ID
+    FROM
+        employees e
+    JOIN dept_emp de ON e.emp_no = de.emp_no
+    WHERE
+        e.emp_no > 10020
+    GROUP BY e.emp_no
+    ORDER BY e.emp_no
+    LIMIT 20) AS B UNION SELECT 
+        C.*
+    FROM
+        (SELECT 
+        e.emp_no AS employee_ID,
+            MIN(de.dept_no) AS department_code,
+            (SELECT 
+                    emp_no
+                FROM
+                    dept_manager
+                WHERE
+                    emp_no = 110039) AS manager_ID
+    FROM
+        employees e
+    JOIN dept_emp de ON e.emp_no = de.emp_no
+    WHERE
+        e.emp_no = 110022
+    GROUP BY e.emp_no
+    ORDER BY e.emp_no) AS C UNION SELECT 
+        D.*
+    FROM
+        (SELECT 
+        e.emp_no AS employee_ID,
+            MIN(de.dept_no) AS department_code,
+            (SELECT 
+                    emp_no
+                FROM
+                    dept_manager
+                WHERE
+                    emp_no = 110022) AS manager_ID
+    FROM
+        employees e
+    JOIN dept_emp de ON e.emp_no = de.emp_no
+    WHERE
+        e.emp_no = 110039
+    GROUP BY e.emp_no
+    ORDER BY e.emp_no) AS D) AS U
+; 
+
+--
+
+
